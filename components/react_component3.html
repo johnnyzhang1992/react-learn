@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title> React 实例</title>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    let WebSite = React.createClass({
+        render: function() {
+            return (
+                <div>
+                    <Name name={this.props.name} className={this.props.className}/>
+                    <Link site={this.props.site} />
+                </div>
+            );
+        }
+    });
+
+    let Name = React.createClass({
+        render: function() {
+            return (
+                <h1 className={this.props.className}>{this.props.name}</h1>
+            );
+        }
+    });
+
+    let Link = React.createClass({
+        render: function() {
+            return (
+                <a href={this.props.site}>
+                    {this.props.site}
+                </a>
+            );
+        }
+    });
+
+    ReactDOM.render(
+        <WebSite name="小小梦工场" site=" http://johnnyzhang.cn" className="name"/>,
+        document.getElementById('example')
+    );
+    /**
+     * 注意，在添加属性时， class 属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字。
+     */
+</script>
+</body>
+</html>
