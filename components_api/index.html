@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>React 组件 API</title>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+<h2>React 组件 API</h2>
+在本章节中我们将讨论 React 组件 API。我们将讲解以下7个方法:
+<ul>
+    <li>设置状态：setState</li>
+    <li>替换状态：replaceState</li>
+    <li>设置属性：setProps</li>
+    <li>替换属性：replaceProps</li>
+    <li>强制更新：forceUpdate</li>
+    <li>获取DOM节点：findDOMNode</li>
+    <li>判断组件挂载状态：isMounted</li>
+</ul>
+<div id="message"></div>
+</body>
+<script type="text/babel">
+    let Counter = React.createClass({
+        getInitialState: function () {
+            return { clickCount: 0 };
+        },
+        handleClick: function () {
+            this.setState(function(state) {
+                return {clickCount: state.clickCount + 1};
+            });
+        },
+        render: function () {
+            return (<h2 onClick={this.handleClick}>点我！点击次数为: {this.state.clickCount}</h2>);
+        }
+    });
+    ReactDOM.render(
+        <Counter />,
+        document.getElementById('message')
+    );
+</script>
+</html>
