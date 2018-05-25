@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title> React 实例</title>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<div id="example1"></div>
+<script type="text/babel">
+    let Content = React.createClass({
+        render: function() {
+            return (
+                    <div>
+                        <button onClick = {this.props.updateStateProp}>点我</button>
+                        <h4>{this.props.myDataProp}</h4>
+                    </div>
+                ) ;
+        }
+    });
+    let HelloMessage = React.createClass({
+        getInitialState: function() {
+            return {value: 'Hello Runoob!'};
+        },
+        handleChange: function(event) {
+            this.setState({value: '菜鸟教程'})
+        },
+        render: function() {
+            let value = this.state.value;
+            return (
+                    <div>
+                        <Content myDataProp = {value} updateStateProp = {this.handleChange}></Content>
+                    </div>
+                );
+        }
+    });
+    ReactDOM.render(
+        <HelloMessage />,
+        document.getElementById('example')
+    );
+</script>
+<script type="text/babel">
+    let HelloMessage1 = React.createClass({
+        getInitialState: function () {
+            return {
+                message: 'hello world'
+            }
+        },
+        handleChange: function () {
+          this.setState({
+              message: 'hello--johnny'
+          })
+        },
+        render: function () {
+          return (
+              <div>
+                  <p>{this.state.message}</p>
+                  <a type="button" onClick={this.handleChange}>Click Me</a>
+              </div>
+          )  ;
+        }
+    });
+    ReactDOM.render(
+        <HelloMessage1/>,
+        document.getElementById('example1')
+    )
+</script>
+</body>
+</html>
