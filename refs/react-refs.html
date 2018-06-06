@@ -22,7 +22,9 @@
             this.refs.myInput.focus();
         },
         componentDidMount: function() {
+            // 渲染完成，自动获得焦点
             console.log('Component DID MOUNT!');
+            this.refs.myInput.focus();
             this.setState({
                 placeholder: 'please input some thing'
             });
