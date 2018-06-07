@@ -19,7 +19,23 @@
         },
         handleClick: function(event) {
             // state的值发生变化，自动调用this.render方法渲染
-            this.setState({liked: !this.state.liked});
+
+            // 1
+            // this.setState({liked: !this.state.liked});
+
+            // 2 函数
+            this.setState(function (prevState,props) {
+                return {
+                    liked: !prevState.liked
+                }
+            });
+
+            // 3 箭头函数
+            // this.setState((prevState, props) => ({
+            //     return {
+            //         liked: !prevState.liked
+            //     }
+            // }));
         },
         render: function() {
             let text = this.state.liked ? '喜欢' : '不喜欢';
