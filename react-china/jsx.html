@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>jsx</title>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+
+<div id="root">
+    加载中
+</div>
+<p>JSX， 一种 JavaScript 的语法扩展;</p>
+<p>在 JSX 中使用表达式,你可以任意地在 JSX 当中使用 JavaScript 表达式，在 JSX 当中的表达式要包含在大括号里。</p>
+<p>我们书写 JSX 的时候一般都会带上换行和缩进，这样可以增强代码的可读性。与此同时，我们同样推荐在 JSX 代码的外面扩上一个小括号，这样可以防止 分号自动插入 的 bug。</p>
+
+<script type="text/babel">
+    let style = {
+        width: '200px',
+        height:'auto'
+    };
+
+    function formatName(user) {
+        return user.firstName + ' ' + user.lastName;
+    }
+
+    function getGreeting(user) {
+        if (user) {
+            return (
+                <div>
+                    <h1>Hello, {formatName(user)}!</h1>
+                    <img src={user.avatarUrl} alt={formatName(user)} style={style}/>
+                </div>
+            );
+        }
+        return <h1>Hello, Stranger.</h1>;
+    }
+
+    const user = {
+        firstName: 'Harper',
+        lastName: 'Perez',
+        avatarUrl: 'https://wx2.sinaimg.cn/mw690/714a59a7ly1fjwu5abz0oj219c1w04qs.jpg'
+    };
+
+    const element1 = getGreeting(user);
+
+    ReactDOM.render(
+        element1,
+        document.getElementById('root')
+    );
+
+    // JSX 属性
+    // 你可以使用引号来定义以字符串为值的属性：
+    // const element = <div tabIndex="0"></div>;
+
+    //  也可以使用大括号来定义以 JavaScript 表达式为值的属性：
+    // const element2 = <img src={user.avatarUrl}></img>;
+
+    // JSX 代表 Objects
+    // Babel 转译器会把 JSX 转换成一个名为 React.createElement() 的方法调用。
+    // 下面两种代码的作用是完全相同的：
+    const element3 = (
+        <h1 className="greeting">
+            Hello, world!
+        </h1>
+    );
+    const element4 = React.createElement(
+        'h1',
+        {className: 'greeting'},
+        'Hello, world!'
+    );
+</script>
+</body>
+</html>
